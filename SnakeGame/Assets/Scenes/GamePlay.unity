@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &922055047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +322,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   following: {fileID: 0}
+  previousPositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  setIndex: 0
+  getIndex: -9
+  partsToAdd: 0
 --- !u!212 &922055048
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -372,7 +386,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 2
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &922055049
 Transform:
@@ -382,7 +396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922055046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -421,6 +435,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakeSpeed: 1
   bodyPrefab: {fileID: 5526730909781950181, guid: e17ecec3fe8a55843bee8ec1efc72314, type: 3}
+  tailSprite: {fileID: 21300000, guid: b4e012600ad67b54582666b130203cb9, type: 3}
+  bodySprite: {fileID: 21300000, guid: 17d9e16d8b6534248bb2ea89465e1b20, type: 3}
+  snakeHead: {fileID: 922055047}
 --- !u!4 &2038987498
 Transform:
   m_ObjectHideFlags: 0

@@ -20,8 +20,10 @@ public class SnakeHead : BodyPart
     }
 
     // Update is called once per frame
-    void Update()
+    override public void Update()
     {
+        base.Update();
+
         SetMovement(movement);
         UpdateDirection();
         UpdatePosition();
@@ -42,7 +44,9 @@ public class SnakeHead : BodyPart
     {
         if(tail == null)
         {
-            BodyPart newPart = Instantiate(GameController.instance.bodyPrefab, transform.position, Quaternion.identity);
+            Vector3 newPosition = transform.position;
+            newPosition.z = newPosition.z + 0.01f;
+            BodyPart newPart = Instantiate(GameController.instance.bodyPrefab, newPosition, Quaternion.identity);
             newPart.following = this;
             tail = newPart;
             newPart.TurnIntoTail();
