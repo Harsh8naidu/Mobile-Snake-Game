@@ -5,6 +5,17 @@ using UnityEngine;
 public class BodyPart : MonoBehaviour
 {
     Vector2 dPosition;
+
+    public BodyPart following = null;
+
+    private bool isTail = false;
+
+    private SpriteRenderer spriteRenderer = null;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +40,25 @@ public class BodyPart : MonoBehaviour
 
     public void UpdateDirection()
     {
-        if (dPosition.x > 0) // up
+        if (dPosition.y > 0) // up
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-        else if (dPosition.x < 0) // down
+        else if (dPosition.y < 0) // down
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 180);
-        else if (dPosition.y > 0) // right
+        else if (dPosition.x > 0) // right
             gameObject.transform.localEulerAngles = new Vector3(0, 0, -90);
-        else if (dPosition.y < 0) // left
+        else if (dPosition.x < 0) // left
             gameObject.transform.localEulerAngles = new Vector3(0, 0, 90);
+    }
+
+    public void TurnIntoTail()
+    {
+        isTail = true;
+        spriteRenderer.sprite = GameController.instance.tailSprite;
+    }
+
+    public void TurnIntoBodyPart()
+    {
+        isTail = false;
+        spriteRenderer.sprite = GameController.instance.bodySprite;
     }
 }
