@@ -21,25 +21,87 @@ public class GameController : MonoBehaviour
 
     public SnakeHead snakeHead = null;
 
+    public bool alive = true;
+
+    public bool waitingToPlay = true;
+
+    List<Egg> eggs = new List<Egg>();
+
+    int level = 0;
+    int noOfEggsForNextLevel = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         Debug.Log("Starting Snake Game");
         CreateWalls();
-        StartGame();
-        CreateEgg();
+        alive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (waitingToPlay)
+        {
+            foreach(Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    StartGamePlay();
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+                StartGamePlay();
+        }
     }
 
-    void StartGame()
+    public void GameOver()
     {
+        alive = false;
+        waitingToPlay = true;
+    }
+
+    void StartGamePlay()
+    {
+        waitingToPlay = false;
+        alive = true;
+
+        KillOldEggs();
+
+        LevelUp();
+    }
+
+    void LevelUp()
+    {
+        level++;
+
+        noOfEggsForNextLevel = 4 + (level * 2);
+
+        snakeSpeed = 1f + (level/4f);
+        if (snakeSpeed > 6) snakeSpeed = 6;
+
         snakeHead.ResetSnake();
+        CreateEgg();
+    }
+
+    public void EggEaten(Egg egg)
+    {
+        noOfEggsForNextLevel--;
+        if (noOfEggsForNextLevel == 0)
+        {
+            LevelUp();
+        }
+        else if (noOfEggsForNextLevel == 1) // last egg
+            CreateEgg(true);
+        else
+        {
+            CreateEgg(false);
+        }
+
+        eggs.Remove(egg);
+        Destroy(egg.gameObject);
     }
 
     void CreateWalls()
@@ -91,9 +153,21 @@ public class GameController : MonoBehaviour
         position.x = -width + Random.Range(1f, (width * 2) - 2f);
         position.y = -height + Random.Range(1f, (height * 2) - 2f);
         position.z = -1f;
+        Egg egg = null;
         if(golden)
-            Instantiate(goldEggPrefab, position, Quaternion.identity);
+            egg = Instantiate(goldEggPrefab, position, Quaternion.identity).GetComponent<Egg>();
         else
-            Instantiate(eggPrefab, position, Quaternion.identity);
+            egg = Instantiate(eggPrefab, position, Quaternion.identity).GetComponent<Egg>();
+
+        eggs.Add(egg);
+    }
+
+    void KillOldEggs()
+    {
+        foreach(Egg egg in eggs)
+        {
+            Destroy(egg.gameObject);
+        }
+        eggs.Clear();
     }
 }
