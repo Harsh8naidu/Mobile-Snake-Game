@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "5a11c4d9",
         "name": "com.PressFStudios.SnakeGame",
-        "processId": 29074,
+        "processId": 29871,
         "exited": false
     },
     "m_SelectedPriority": 2,
@@ -24,6 +24,12 @@
             "deviceId": "5a11c4d9",
             "name": "com.PressFStudios.SnakeGame",
             "processId": 29074,
+            "exited": false
+        },
+        {
+            "deviceId": "5a11c4d9",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 29871,
             "exited": false
         }
     ],

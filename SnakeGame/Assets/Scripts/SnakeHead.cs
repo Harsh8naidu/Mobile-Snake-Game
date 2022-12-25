@@ -85,7 +85,7 @@ public class SnakeHead : BodyPart
 
     void MoveUp()
     {
-        movement = Vector2.up * GameController.instance.snakeSpeed * Time.deltaTime;
+        movement = Vector2.up * GameController.instance.snakeSpeed * Time.deltaTime ;
     }
 
     void MoveDown()
@@ -110,5 +110,18 @@ public class SnakeHead : BodyPart
 
         partsToAdd = 5;
         addTimer = TIMETOADDBODYPART;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Egg egg = collision.GetComponent<Egg>();
+        if(egg)
+        {
+            Debug.Log("Hit Egg");
+        }
+        else
+        {
+            Debug.Log("Hit Obstacle");
+        }
     }
 }
