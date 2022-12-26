@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "5a11c4d9",
+    "m_SelectedDeviceId": "ZF6526F6W3",
     "m_SelectedPackage": {
-        "deviceId": "5a11c4d9",
+        "deviceId": "ZF6526F6W3",
         "name": "com.PressFStudios.SnakeGame",
-        "processId": 29871,
+        "processId": 28344,
         "exited": false
     },
     "m_SelectedPriority": 2,
@@ -30,6 +30,12 @@
             "deviceId": "5a11c4d9",
             "name": "com.PressFStudios.SnakeGame",
             "processId": 29871,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 28344,
             "exited": false
         }
     ],

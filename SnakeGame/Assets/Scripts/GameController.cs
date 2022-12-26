@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -29,6 +30,15 @@ public class GameController : MonoBehaviour
 
     int level = 0;
     int noOfEggsForNextLevel = 0;
+
+    public int score = 0;
+    public int hiScore = 0;
+
+    public Text scoreText = null;
+    public Text hiScoreText = null;
+
+    public Text tapToPlayText = null;
+    public Text gameOverText = null;
 
     // Start is called before the first frame update
     void Start()
@@ -61,10 +71,21 @@ public class GameController : MonoBehaviour
     {
         alive = false;
         waitingToPlay = true;
+
+        gameOverText.gameObject.SetActive(true);
+        tapToPlayText.gameObject.SetActive(true);
     }
 
     void StartGamePlay()
     {
+        score = 0;
+
+        scoreText.text = "Score = "+score;
+        hiScoreText.text = "HiScore = " + hiScore;
+
+        gameOverText.gameObject.SetActive(false);
+        tapToPlayText.gameObject.SetActive(false);
+
         waitingToPlay = false;
         alive = true;
 
@@ -88,9 +109,22 @@ public class GameController : MonoBehaviour
 
     public void EggEaten(Egg egg)
     {
+        score++;
+
         noOfEggsForNextLevel--;
+
+        if (score > hiScore)
+        {
+            hiScore = score;
+            hiScoreText.text = "HiScore = " + hiScore;
+        }
+
+        scoreText.text = "Score = " + score;
+
+
         if (noOfEggsForNextLevel == 0)
         {
+            score += 10;
             LevelUp();
         }
         else if (noOfEggsForNextLevel == 1) // last egg
@@ -135,7 +169,7 @@ public class GameController : MonoBehaviour
         for(int rock=0; rock <= noOfRocks; rock++)
         {
             float rotation = Random.Range(0, 360f);
-            float scale = Random.Range(1.5f, 2f);
+            float scale = Random.Range(3f, 2f);
             CreateRock(position, scale, rotation);
             position = position + delta;
         }
