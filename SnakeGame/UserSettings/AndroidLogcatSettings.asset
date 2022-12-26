@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "ZF6526F6W3",
         "name": "com.PressFStudios.SnakeGame",
-        "processId": 28344,
+        "processId": 13093,
         "exited": false
     },
     "m_SelectedPriority": 2,
@@ -36,6 +36,54 @@
             "deviceId": "ZF6526F6W3",
             "name": "com.PressFStudios.SnakeGame",
             "processId": 28344,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.motorola.launcher3",
+            "processId": 1680,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 4003,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 7011,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 7583,
+            "exited": true
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 8920,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 11168,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 11939,
+            "exited": false
+        },
+        {
+            "deviceId": "ZF6526F6W3",
+            "name": "com.PressFStudios.SnakeGame",
+            "processId": 13093,
             "exited": false
         }
     ],

@@ -15,6 +15,9 @@ public class SnakeHead : BodyPart
 
     List<BodyPart> parts = new List<BodyPart>();
 
+    public AudioSource[] gulpSounds = new AudioSource[3];
+    public AudioSource dieSound = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +31,7 @@ public class SnakeHead : BodyPart
 
         base.Update();
 
-        SetMovement(movement);
+        SetMovement(movement * Time.deltaTime);
         UpdateDirection();
         UpdatePosition();
 
@@ -49,7 +52,7 @@ public class SnakeHead : BodyPart
         if(tail == null)
         {
             Vector3 newPosition = transform.position;
-            newPosition.z = newPosition.z + 0.01f;
+            newPosition.z += 0.01f;
             BodyPart newPart = Instantiate(GameController.instance.bodyPrefab, newPosition, Quaternion.identity);
             newPart.following = this;
             tail = newPart;
@@ -60,9 +63,8 @@ public class SnakeHead : BodyPart
         else
         {
             Vector3 newPosition = tail.transform.position;
-            newPosition.z = newPosition.z + 0.01f;
-
-            BodyPart newPart = Instantiate(GameController.instance.bodyPrefab, transform.position, tail.transform.rotation);
+            newPosition.z += 0.01f;
+            BodyPart newPart = Instantiate(GameController.instance.bodyPrefab, tail.transform.position, tail.transform.rotation);
             newPart.following = tail;
             newPart.TurnIntoTail();
             tail.TurnIntoBodyPart();
@@ -93,22 +95,22 @@ public class SnakeHead : BodyPart
 
     void MoveUp()
     {
-        movement = Vector2.up * GameController.instance.snakeSpeed * Time.deltaTime ;
+        movement = Vector2.up * GameController.instance.snakeSpeed;
     }
 
     void MoveDown()
     {
-        movement = Vector2.down * GameController.instance.snakeSpeed * Time.deltaTime;
+        movement = Vector2.down * GameController.instance.snakeSpeed;
     }
 
     void MoveLeft()
     {
-        movement = Vector2.left * GameController.instance.snakeSpeed * Time.deltaTime;
+        movement = Vector2.left * GameController.instance.snakeSpeed;
     }
 
     void MoveRight()
     {
-        movement = Vector2.right * GameController.instance.snakeSpeed * Time.deltaTime;
+        movement = Vector2.right * GameController.instance.snakeSpeed;
     }
 
     public void ResetSnake()
@@ -123,7 +125,9 @@ public class SnakeHead : BodyPart
         MoveUp();
 
         gameObject.transform.localEulerAngles = new Vector3(0, 0, 0); //up
-        gameObject.transform.position = new Vector3(0, 0, -8f); 
+        gameObject.transform.position = new Vector3(0, 0, -8);
+
+        ResetMemory();
 
         partsToAdd = 5;
         addTimer = TIMETOADDBODYPART;
@@ -136,11 +140,14 @@ public class SnakeHead : BodyPart
         {
             Debug.Log("Hit Egg");
             EatEgg(egg);
+            int rand = Random.Range(0, 3);
+            gulpSounds[rand].Play();
         }
         else
         {
             Debug.Log("Hit Obstacle");
             GameController.instance.GameOver();
+            dieSound.Play();
         }
     }
 

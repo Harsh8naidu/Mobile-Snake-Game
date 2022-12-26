@@ -26,6 +26,12 @@ public class BodyPart : MonoBehaviour
         
     }
 
+    public void ResetMemory()
+    {
+        setIndex = 0;
+        getIndex = -(PARTSREMEMBERED - 1);
+    }
+
     // Update is called once per frame
     virtual public void Update()
     {
